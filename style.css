@@ -7,10 +7,26 @@
     font-style: normal;
     font-variation-settings:
         "wdth" 100;
+    overflow: hidden;
 }
 
 body {
     text-align: center;
     background-color: black;
     color: white;
+}
+
+.button {
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    font-size: 7.5vw;
+    margin-left: -5vw;
+    margin-top: -5vw;
+}
+
+.killzone {
+    position: fixed; 
+    background-color: red;
+    overflow: hidden;
 }
