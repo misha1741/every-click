@@ -9,7 +9,7 @@ function buttonTick(button) {
 
     if (Number(button.innerHTML) == 0) {
         deathAmount += 1
-        deathCounter.innerHTML = "Количество раз, который ты умер: "+deathAmount
+        deathCounter.innerHTML = "Количество раз, когда ты проиграл: "+deathAmount
         button.innerHTML = 6
     }
 
@@ -47,7 +47,7 @@ function createButton(x, y) {
 function setupKillzone(killzone, x, y, width, height) {
     killzone.addEventListener("mouseover", function() {
         deathAmount += 1
-        deathCounter.innerHTML = "Количество раз, который ты умер: "+deathAmount
+        deathCounter.innerHTML = "Количество раз, когда ты проиграл: "+deathAmount
     })
 
     killzone.style.left = x+"vw"
@@ -84,6 +84,8 @@ let deathCounter = document.querySelector(".deathCounter")
 
 let buttonArray = []
 let killzoneArray = []
+let scaleAmount = {value: 1}
+let text = document.querySelector(".everyclicktext")
 
 function sequence() {
     document.querySelector(".music").play()
@@ -91,20 +93,43 @@ function sequence() {
     createButton(50,50)
     //createKillzone(25,50,20,40)
 
+    let timeline = anime.timeline({
+        targets: scaleAmount,
+        loop: true,
+    })
+
+    timeline.add({
+        value: 1.075,
+        duration: 0,
+        easing: 'easeInOutSine'
+    })
+    
+    timeline.add({
+        value: 1,
+        duration: 250,
+        easing: 'easeInOutSine'
+    });
+
+    timeline.add({
+        value: 1,
+        duration: 150,
+        easing: 'linear'
+    });
+
     //First 30 seconds
     setTimeout(() => {
         anime({
             targets: "#b1",
-            translateX: "25vw",
-            translateY: "0vh",
+            left: "75vw",
+            top: "50vh",
             duration: 500,
             easing: "easeOutCubic",
         });
         createButton(50,50)
         anime({
             targets: "#b2",
-            translateX: "-25vw",
-            translateY: "0vh",
+            left: "25vw",
+            top: "50vh",
             duration: 500,
             easing: "easeOutCubic",
         });
@@ -113,15 +138,15 @@ function sequence() {
     setTimeout(() => {
         anime({
             targets: "#b1",
-            translateX: "25vw",
-            translateY: "-25vh",
+            left: "75vw",
+            top: "25vh",
             duration: 500,
             easing: "easeOutCubic",
         });
         anime({
             targets: "#b2",
-            translateX: "-25vw",
-            translateY: "-25vh",
+            left: "25vw",
+            top: "25vh",
             duration: 500,
             easing: "easeOutCubic",
         });
@@ -129,22 +154,22 @@ function sequence() {
         createButton(75,50)
         anime({
             targets: "#b3",
-            translateX: "0vw",
-            translateY: "25vh",
+            left: "25vw",
+            top: "75vh",
             duration: 500,
             easing: "easeOutCubic",
         });
         anime({
             targets: "#b4",
-            translateX: "0vw",
-            translateY: "25vh",
+            left: "75vw",
+            top: "75vh",
             duration: 500,
             easing: "easeOutCubic",
         });
     }, 12500);
 
     setTimeout(() => {
-        createKillzone(50,150,10,30)
+        createKillzone(50,150,2.5,30)
         anime({
             targets: "#k1",
             translateX: "0vw",
@@ -153,6 +178,129 @@ function sequence() {
             easing: "linear",
         });
     }, 18750);
+
+    setTimeout(() => {
+        anime({
+            targets: "#b1",
+            left: "75vw",
+            top: "125vh",
+            duration: 750,
+            easing: "easeInOutQuad",
+        });
+        anime({
+            targets: "#b2",
+            left: "25vw",
+            top: "125vh",
+            duration: 750,
+            easing: "easeInOutQuad",
+        });
+        anime({
+            targets: "#b3",
+            left: "25vw",
+            top: "125vh",
+            duration: 750,
+            easing: "easeInOutQuad",
+        });
+        anime({
+            targets: "#b4",
+            left: "75vw",
+            top: "125vh",
+            duration: 750,
+            easing: "easeInOutQuad",
+        });
+    }, 25250);
+
+    setTimeout(() => {
+        createButton(-25,50)
+        anime({
+                targets: "#b5",
+                left: "25vw",
+                duration: 1500,
+                easing: "easeInOutSine",
+                composition: "blend"
+            })
+        setTimeout(() => {
+            anime({
+                targets: "#b5",
+                left: ["25vw", "75vw"],
+                direction: "alternate",
+                loop: true,
+                duration: 1500,
+                easing: "easeInOutSine",
+                composition: "blend"
+            })
+        }, 1500);
+    }, 25000);
+    
+    setTimeout(() => {
+        removeButton(document.querySelector("#b1"))
+        removeButton(document.querySelector("#b2"))
+        removeButton(document.querySelector("#b3"))
+        removeButton(document.querySelector("#b4"))
+    }, 30000);
+
+    setTimeout(() => {
+        anime({
+            targets: "#b5",
+            top: "25vh",
+            duration: 666,
+            easing: "easeInOutSine",
+            composition: "blend"
+        })
+        setTimeout(() => {
+            anime({
+                targets: "#b5",
+                top: ["25vh", "75vh"],
+                direction: "alternate",
+                loop: true,
+                duration: 1222,
+                easing: "easeInOutSine",
+                composition: "blend"
+            })
+        }, 666);
+    }, 31750);
+
+    setTimeout(() => {
+        anime({
+            targets: text,
+            top: "22.5vh",
+            duration: 1000,
+            easing: "easeOutCubic",
+        })
+    }, 37750);
+    setTimeout(() => {
+        anime({
+            targets: text,
+            top: "100vh",
+            duration: 1000,
+            easing: "easeInCubic",
+        })
+        anime({
+            targets: "#b5",
+            top: "125vh",
+            duration: 1250,
+            easing: "easeInCubic",
+            composition: "replace"
+        })
+        anime({
+            targets: "#k1",
+            translateY: "100vh",
+            duration: 1250,
+            easing: "easeInCubic",
+            composition: "replace"
+        })
+    }, 38750);
+    setTimeout(() => {
+        document.querySelector("body").style.backgroundColor = "#ffffff"
+        anime({
+            targets: document.querySelector("body"),
+            backgroundColor: "#000000",
+            duration: 500,
+            easing: "linear",
+        })
+        removeButton(document.querySelector("#b5"))
+        removeKillzone(document.querySelector("#k1"))
+    }, 40000);
 }
 
 let startButton = document.querySelector(".start")
@@ -164,3 +312,12 @@ startButton.addEventListener("click", function() {
 //    removeButton(buttonThing)
 //    removeKillzone(killzoneThing)
 //}, 7500);
+
+function pulse() {
+    for (let b of buttonArray) {
+        b.style.translate = (b.style.translateX, b.style.translateY)
+        b.style.scale = scaleAmount.value
+    }
+    requestAnimationFrame(pulse)
+}
+pulse()
