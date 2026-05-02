@@ -17,16 +17,33 @@ body {
 }
 
 .button {
-    position: absolute;
+    position: fixed;
     width: 10vw;
     height: 10vw;
     font-size: 7.5vw;
     margin-left: -5vw;
     margin-top: -5vw;
+
+    background-color: #222222;
+    color: white;
+    border: 1vw solid;
+
+    border-top-color: #3f3f3f;
+    border-right-color: #3f3f3f;
+    border-bottom-color: #2c2c2c;
+    border-left-color: #2c2c2c;
+
+    user-select: none;
 }
 
 .killzone {
     position: fixed; 
     background-color: red;
     overflow: hidden;
+    border: 1vw solid;
+
+    border-top-color: #c00000;
+    border-right-color: #c00000;
+    border-bottom-color: #900000;
+    border-left-color: #900000;
 }
