@@ -74,6 +74,15 @@ function createKillzone(x, y, width, height) {
     killzoneArray.push(killzone)
 }
 
+// Turret Functions //
+function setupTurret(turret, x, y, speed, reachDistance) {
+    
+}
+
+function shootTurret(turret, speed, reachDistance) {
+
+}
+
 //let buttonThing = document.querySelector(".button")
 //setupButton(buttonThing, "50vw", "50vh")
 
