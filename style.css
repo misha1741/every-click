@@ -47,3 +47,14 @@ body {
     border-bottom-color: #900000;
     border-left-color: #900000;
 }
+
+.turret {
+    position: fixed;
+    width: 5vw;
+    height: 5vw;
+    margin-left: -2.5vw;
+    margin-top: -2.5vw;
+    
+    background-color: white;
+    border-radius: 100%;
+}
